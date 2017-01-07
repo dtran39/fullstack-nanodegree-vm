@@ -7,31 +7,29 @@
 -- these lines here.
 
 -- Drop previous DB, create a new db and connects
-DROP DATABASE IF EXISTS tournament;
-CREATE DATABASE tournament;
+
+Drop database if exists tournament;
+Create database tournament;
 \connect tournament;
 
 -- players table: name and id
-
-CREATE TABLE players(
-  id SERIAL PRIMARY KEY,
-  name TEXT
+Create table players(
+  id Serial primary key,
+  name text
 );
 
 -- matches table: id, winner, loser
-
-CREATE TABLE matches (
-  id SERIAL PRIMARY KEY,
-  winner INT REFERENCES players(id),
-  loser INT REFERENCES players(id)
+Create table matches(
+  id Serial primary key,
+  winner Integer references players(id),
+  loser Integer references players(id)
 );
-
--- Standings:
-CREATE VIEW player_standings AS
-	SELECT
+-- Player standings view:
+Create view player_standings As
+  Select
     players.id,
-		players.name,
-		(SELECT COUNT(*) FROM matches WHERE players.id = matches.winner) AS wins,
-		(SELECT COUNT(*) FROM matches WHERE players.id = matches.winner OR players.id = matches.loser) AS matches
-	FROM players
-	ORDER BY wins DESC;
+    players.name,
+    (Select count(*) From matches where players.id = matches.winner) as wins,
+    (Select count(*) From matches where players.id = matches.winner or players.id = matches.loser) as matches
+  From players
+  Order by wins desc;

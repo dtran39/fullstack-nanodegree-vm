@@ -91,3 +91,9 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
+    sorted_players = execute_query("Select id, name from player_standings")
+    pairs = []
+    for i in xrange(0, len(sorted_players) - 1, 2):
+        p1, p2 = sorted_players[i], sorted_players[i + 1]
+        pairs.append((p1[0], p1[1], p2[0], p2[1]))
+    return pairs
