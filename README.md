@@ -9,4 +9,5 @@
 7. vagrant ssh (to login the virtual machine)
 8. psql (to open PostgreSQL)
 9. \i tournament.sql (to initializa the database and tables)
-10. python tournament_test.py (to run the unit tests)
+10. Ctrl + D (to log out of PostgreSQL)
+11. python tournament_test.py (to run the unit tests)
