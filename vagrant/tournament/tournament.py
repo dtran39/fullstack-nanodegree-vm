@@ -73,7 +73,8 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
-
+    return execute_update("INSERT INTO matches(winner, loser) VALUES (%s, %s)",
+                          (winner, loser))
 
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
