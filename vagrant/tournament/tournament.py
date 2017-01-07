@@ -38,8 +38,7 @@ def deletePlayers():
 
 def countPlayers():
     """Returns the number of players currently registered."""
-    total = execute_query("SELECT COUNT(*) AS total FROM players")
-    return total[0][0]
+    return execute_query("SELECT COUNT(*) AS total FROM players")[0][0]
 
 def registerPlayer(name):
     """Adds a player to the tournament database.
@@ -65,7 +64,7 @@ def playerStandings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
-
+    return execute_query("Select * from player_standings")
 
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.

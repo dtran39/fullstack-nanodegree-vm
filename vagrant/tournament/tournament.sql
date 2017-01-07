@@ -26,4 +26,12 @@ CREATE TABLE matches (
   loser INT REFERENCES players(id)
 );
 
--- Standings: 
+-- Standings:
+CREATE VIEW player_standings AS
+	SELECT
+    players.id,
+		players.name,
+		(SELECT COUNT(*) FROM matches WHERE players.id = matches.winner) AS wins,
+		(SELECT COUNT(*) FROM matches WHERE players.id = matches.winner OR players.id = matches.loser) AS matches
+	FROM players
+	ORDER BY wins DESC;
